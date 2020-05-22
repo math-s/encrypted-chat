@@ -16,8 +16,9 @@
   "author": "Matheus Silva",
   "license": "(MIT)",
   "dependencies": {
-    "socket.io": "*",
-    "express": "*"
+    "cryp-math-s": "^1.0.0",
+    "express": "*",
+    "socket.io": "*"
   },
   "bugs": {
     "url": "https://github.com/math-s/encrypted-chat/issues"

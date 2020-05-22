@@ -4,8 +4,10 @@ var io = require("socket.io").listen(server);
 users = [];
 connections = [];
 
-server.listen(process.env.PORT || 3000);
-console.log("Server running...");
+const port = process.env.PORT || 3000;
+server.listen(port, ()=> console.log(`Server running on port ${port}`));
+
+console.log(`Server running on port ${port}...`);
 
 
 app.get('/', function(req, res) {
