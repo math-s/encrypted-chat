@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script type='text/javascript' src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script type='text/javascript' src="vigenere.js"></script>
 
     <style>
         body {
@@ -19,9 +20,7 @@
 </head>
 <body>
 
-
 <div class="container">
-    {{encrypted_message}}
         <div id="userFormArea" >
             <div class="container">
                 <form id="userForm">
@@ -89,11 +88,13 @@
 
         $messageForm.submit(function(e) {
             e.preventDefault();
-            socket.emit('send message', $message.val());
+            var messageEncrypted = encryption("aaaa",message.val());
+            socket.emit('send message', messageEncrypted);
             $message.val('');
         });
 
         socket.on('new message', function(data) {
+            
             $chat.append('<div class="well"><li ><strong>'+data.user+': </strong>'+data.msg+'</li></div>');
         });
 
