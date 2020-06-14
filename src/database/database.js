@@ -3,6 +3,7 @@ var Mongoose = require('mongoose');
 
 module.exports = {
   connect: function () {
+    console.log('connection called...');
     const uri = "mongodb://localhost:27017";
     if (database) {
       return;
