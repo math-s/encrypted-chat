@@ -18,6 +18,7 @@
   "dependencies": {
     "cryp-math-s": "^1.0.0",
     "express": "*",
+    "mongoose": "^5.9.18",
     "socket.io": "*"
   },
   "bugs": {
