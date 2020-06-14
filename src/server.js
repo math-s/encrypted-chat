@@ -2,10 +2,11 @@ var app = require('express')();
 var server = require("http").Server(app);
 var io = require("socket.io").listen(server);
 var fs = require('fs');
+var database = require('./database/database')
 
 users = [];
 connections = [];
-
+database.connect
 const port = process.env.PORT || 3000;
 server.listen(port, ()=> console.log(`Server running on port ${port}...`));
 
