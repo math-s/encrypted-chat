@@ -6,7 +6,7 @@ var database = require('./database/database')
 
 users = [];
 connections = [];
-database.connect;
+
 
 const port = process.env.PORT || 3000;
 server.listen(port, ()=> console.log(`Server running on port ${port}...`));
@@ -28,8 +28,20 @@ io.sockets.on('connection', function(socket){
     });
     // Send message
     socket.on('send message', function(data){
-        console.log(data);
+        console.log(socket.username + ': ' + data);
         io.sockets.emit('new message', {msg: data, user: socket.username});
+        
+        var Msgs = database.Mongoose.model('msgcollection', database.MsgSchema, 'msgcollection');
+        var msg = new Msgs({ username: socket.username, data: data });
+        msg.save(function (err) {
+            if (err) {
+                console.log("Error! :" + err.message);
+                return err;
+            }
+            else {
+                console.log("Msg saved");
+            }
+        });
     });
 
     // New User
