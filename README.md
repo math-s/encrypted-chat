@@ -3,7 +3,7 @@
 Esse é um projeto de chat.
 Utilizei as seguintes tecnologia:
 
- ** [socket.io](https://socket.io)** 
+ **[socket.io](https://socket.io)** 
  **+ [node.js](https://nodejs.org/)** 
  **+ [mongoDB](https://www.mongodb.com/)**
 
