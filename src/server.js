@@ -27,7 +27,7 @@ io.sockets.on('connection', function(socket){
     });
     // Send message
     socket.on('send message', function(data, time){
-        console.log(socket.username + ': ' + data);
+        console.log('[ %s ]\t %s: \t %s', time, socket.username, data );
         io.sockets.emit('new message', {msg: data, user: socket.username});
         var Msgs = database.Mongoose.model('msgcollection', database.MsgSchema, 'msgcollection');
         var msg = new Msgs({ username: socket.username, data: data, time: time });
