@@ -1,4 +1,5 @@
 
+
 # encrypted-chat
 Esse é um projeto de chat.
 Utilizei as seguintes tecnologia:
@@ -13,10 +14,11 @@ Se você quiser ver o projeto funcionando de maneira bem simples, acesse este re
 Isso vai rodar o servidor remotamente e o **Gitpod** vai te oferecer um link descartável, porém compartilhável, no canto inferior esquerdo onde você vai poder testar o chat. Basta clicar em *"Open Browser"*.
 
 # Estrutura do projeto
-src/
-├── database
-│   └── database.js
-├── home.html
-├── index.html
-└── server.js
+
+    src/
+    ├── database
+    │   └── database.js
+    ├── home.html
+    ├── index.html
+    └── server.js
 
