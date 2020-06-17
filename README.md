@@ -3,9 +3,9 @@
 Esse é um projeto de chat.
 Utilizei as seguintes tecnologia:
 
- **- [socket.io](https://socket.io)** 
- **- [node.js](https://nodejs.org/)** 
- **- [mongoDB](https://www.mongodb.com/)**
+ ** [socket.io](https://socket.io)** 
+ **+ [node.js](https://nodejs.org/)** 
+ **+ [mongoDB](https://www.mongodb.com/)**
 
 Se você quiser ver o projeto funcionando de maneira bem simples, acesse este repositório pelo [Gitpod](https://www.gitpod.io/), e digite no terminal o comando:
 
