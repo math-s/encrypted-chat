@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>IO chatApp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type='text/javascript' src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <style>
+      body {
+        margin-top: 30px;
+      }
+      #messageArea {
+        display: none;
+      }
+      #messageForm {
+        position: fixed;
+        bottom: 0;
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <ul class="list-group" id="channels">
+      <li class="list-group-item">hello</li>
+    </ul>
+  </div>
+</body>
+<script>
+  $(function() {
+    var socket = io.connect();
+    var $channels = $('#channels');
+    socket.emit('get channels', function(data){});
+    socket.on('emit channels', function(result){
+      var html = '';
+        for(i = 0; i < result.length; i++){
+          html += '<li class="list-group-item">'+ '<a href="/'+ result[i]._id +'">' + result[i].name + '</a></li>';
+        }
+        $channels.html(html);
+    })
+  });
+</script>
+</html>

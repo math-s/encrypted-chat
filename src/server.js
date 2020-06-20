@@ -10,22 +10,32 @@ connections = [];
 const port = process.env.PORT || 3000;
 server.listen(port, ()=> console.log(`Server running on port ${port}...`));
 
-app.get('/', function(req, res) {
+app.get('/:_id', function(req, res) {
+    var Chans = database.Mongoose.model('channelcollection', database.ChannelSchema, 'channelcollection');
+    var id = req.params._id;
+
+    Chans.findById(id).lean().exec(function (err, results) {
+        console.log(results);
+    })
     res.sendFile((__dirname + '/index.html'));
+});
+
+app.get('/', function(req, res){
+    res.sendFile((__dirname + '/home.html'));
 });
 
 io.sockets.on('connection', function(socket){
     connections.push(socket);
     console.log('Connected: %s sockets connected', connections.length);
+    io.sockets.emit()
 
-    // Disconnect
     socket.on('disconnect', function(data){
         users.splice(users.indexOf(socket.username), 1);
         updateUsernames();
         connections.splice(connections.indexOf(socket), 1);
         console.log('Disconnected: %s socket connected', connections.length)
     });
-    // Send message
+
     socket.on('send message', function(data, time){
         console.log('[ %s ]\t %s: \t %s', time, socket.username, data );
         io.sockets.emit('new message', {msg: data, user: socket.username});
@@ -34,12 +44,20 @@ io.sockets.on('connection', function(socket){
         msg.save();
     });
 
-    // New User
     socket.on('new user', function(data, callback){
         callback(true);
         socket.username = data;
         users.push(socket.username);
         updateUsernames();
+    });
+
+    socket.on('get channels', function(data, callback){
+        var Chans = database.Mongoose.model('channelcollection', database.ChannelSchema, 'channelcollection');
+        Chans.find({}, function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            io.sockets.emit('emit channels', result);
+        });
     });
 
     function updateUsernames() {

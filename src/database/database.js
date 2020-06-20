@@ -1,26 +1,21 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost:27017/chat', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/chat', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 console.log('mongoose.connect called ... ')
-var msgSchema = new Schema({
+
+const msgSchema = new Schema({
     username: String,
     data: String,
-    time: String
+    time: String,
+    channel: String
 }, { collection: 'msgcollection' }
 );
 const msgModel = mongoose.model('msgModel', msgSchema)
-module.exports = { Mongoose: mongoose, MsgSchema: msgSchema }
 
-try {
-    const projectModel = projectModel.create({teste:"teste"});
-    return projectModel ;
- }
- catch(err) {
-     return err
- }
+const channelSchema =  new Schema({
+    name: String,
+}, { collection: 'channelcollection' });
+const Channel = mongoose.model('channelModel', channelSchema)
 
-
-var saveMessage = function(username, data, time){
-
-}
+module.exports = { Mongoose: mongoose, MsgSchema: msgSchema, ChannelSchema: channelSchema }
