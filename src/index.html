@@ -80,7 +80,9 @@
         e.preventDefault();
         var d = new Date();
         var time = d.getHours().toString() + ":" + d.getMinutes().toString() + ":" + d.getSeconds().toString();
-        socket.emit('send message', $message.val(), time);
+        var path = window.location.pathname;
+        var conversa = path.substr(1);
+        socket.emit('send message', $message.val(), time, conversa);
         $message.val('');
       });
       socket.on('new message', function(data) {
@@ -96,6 +98,8 @@
         });
         $username.val('');
       });
+      
+
       socket.on('get users', function(data) {
         var html = '';
         for(i = 0; i<data.length;i++){
