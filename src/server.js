@@ -25,7 +25,8 @@ app.get('/:_id', function(req, res) {
         console.log(conversa);
     });
     
-    res.sendFile((__dirname + '/index.html'), { title: 'Hey', message: 'Hello there!'});
+    res.sendFile((__dirname + '/index.html'));
+    
 });
 
 app.get('/', function(req, res){

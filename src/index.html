@@ -99,7 +99,7 @@
         $username.val('');
       });
       
-
+      console.log(historico);
       socket.on('get users', function(data) {
         var html = '';
         for(i = 0; i<data.length;i++){
