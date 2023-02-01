@@ -19,7 +19,7 @@
     "body-parser": "^1.19.0",
     "cryp-math-s": "^1.0.0",
     "express": "*",
-    "mongoose": "^5.9.18",
+    "mongoose": "^5.13.15",
     "socket.io": "*"
   },
   "bugs": {
